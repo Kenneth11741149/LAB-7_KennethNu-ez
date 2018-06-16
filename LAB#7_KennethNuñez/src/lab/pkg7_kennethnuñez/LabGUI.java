@@ -33,6 +33,11 @@ public class LabGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Tertabla = new javax.swing.JFrame();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        MenPopUp = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MainTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
@@ -54,6 +59,44 @@ public class LabGUI extends javax.swing.JFrame {
         NoFatherCb = new javax.swing.JComboBox<>();
         label5 = new java.awt.Label();
         button1 = new java.awt.Button();
+        button2 = new java.awt.Button();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Carro", "Piezas", "Tiempo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout TertablaLayout = new javax.swing.GroupLayout(Tertabla.getContentPane());
+        Tertabla.getContentPane().setLayout(TertablaLayout);
+        TertablaLayout.setHorizontalGroup(
+            TertablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+        );
+        TertablaLayout.setVerticalGroup(
+            TertablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+        );
+
+        jMenuItem1.setText("Eliminar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenPopUp.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,14 +207,26 @@ public class LabGUI extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Ensamblaje");
         CarPiezas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        CarPiezas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CarPiezasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(CarPiezas);
 
         label5.setText("Carro");
 
-        button1.setLabel("Generate Tree Design");
+        button1.setLabel("Generate Tree Design / Update");
         button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button1MouseClicked(evt);
+            }
+        });
+
+        button2.setLabel("Ensamblar");
+        button2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button2MouseClicked(evt);
             }
         });
 
@@ -186,23 +241,27 @@ public class LabGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(NoFatherCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NoFatherCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NoFatherCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         MainTab.addTab("Ensamblaje", jPanel2);
@@ -211,7 +270,7 @@ public class LabGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTab)
+            .addComponent(MainTab, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,10 +385,11 @@ public class LabGUI extends javax.swing.JFrame {
             modelo.reload();*/
         }
     }//GEN-LAST:event_MainTabStateChanged
-
+    
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
         if (NoFatherCb.getSelectedIndex() >= 0) {
+            timegeneration.clear();
             DefaultTreeModel modelo = (DefaultTreeModel) CarPiezas.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
             raiz.removeAllChildren();;
@@ -338,6 +398,7 @@ public class LabGUI extends javax.swing.JFrame {
             for (int i = 0; i < todo.size(); i++) {
                 if (todo.get(i) instanceof Carro) {
                     if (((Carro) todo.get(i)).getNombre().equals(x.getNombre())) {
+                        x = ((Carro)todo.get(i));
                         DefaultMutableTreeNode carro = new DefaultMutableTreeNode(((Carro) todo.get(i)));
                         for (int j = 0; j < ((Carro) todo.get(i)).getPieces().size(); j++) {
                             DefaultMutableTreeNode temp = recursiva(((Carro) todo.get(i)).getPieces().get(j), raiz);
@@ -347,21 +408,61 @@ public class LabGUI extends javax.swing.JFrame {
                     }
                 }
             }
+            System.out.println(timegeneration);
             modelo.reload();
+            
             
         } else {
             JOptionPane.showMessageDialog(this, "Usted no ha seleccionado ningun objeto. ");
         }
     }//GEN-LAST:event_button1MouseClicked
 
+    private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_button2MouseClicked
+
+    private void CarPiezasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CarPiezasMouseClicked
+        // TODO add your handling code here:
+        if(evt.isMetaDown()){
+            int row = CarPiezas.getClosestRowForLocation(evt.getX(), evt.getY());
+            CarPiezas.setSelectionRow(row);
+            Object v1 = CarPiezas.getSelectionPath().getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if(nodo_seleccionado.getUserObject() instanceof Piezas ){
+                seleccionation = (Piezas) nodo_seleccionado.getUserObject();
+                MenPopUp.show(evt.getComponent(), evt.getX(), evt.getY());                
+            } else {
+                
+            }
+        }
+    }//GEN-LAST:event_CarPiezasMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel m = (DefaultTreeModel) CarPiezas.getModel();
+        for (int i = 0; i < todo.size(); i++) {
+            if(todo.get(i) instanceof Piezas){
+                if(((Piezas)todo.get(i)).getNombre().equals(seleccionation.getNombre())){
+                    todo.remove(i);
+                }
+            }
+        }
+        m.removeNodeFromParent(nodo_seleccionado);
+        m.reload();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public DefaultMutableTreeNode recursiva(Piezas yet, DefaultMutableTreeNode zeta) {
         if (yet.getPieces().size() == 0) {
             DefaultMutableTreeNode xet = new DefaultMutableTreeNode(yet);
             return xet;
+            
         } else {
             DefaultMutableTreeNode xetter = new DefaultMutableTreeNode(yet);
             for (int i = 0; i < yet.getPieces().size(); i++) {
+                timegeneration.add(yet.getPieces().get(i));
                 xetter.add(recursiva(yet.getPieces().get(i), xetter));
+                
             }
             return xetter;
         }
@@ -416,21 +517,31 @@ public class LabGUI extends javax.swing.JFrame {
     static ArrayList todo = new ArrayList();
     static DefaultMutableTreeNode hijos;
     static ArrayList<Carro> cars = new ArrayList();
+    static Carro x;
+    static ArrayList<Piezas> timegeneration = new ArrayList<Piezas>();
+    static DefaultMutableTreeNode nodo_seleccionado;
+    static Piezas seleccionation;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField CarName;
     private javax.swing.JTree CarPiezas;
     private javax.swing.JComboBox<String> FatherComboBoxModel;
     private javax.swing.JTabbedPane MainTab;
+    private javax.swing.JPopupMenu MenPopUp;
     private javax.swing.JComboBox<String> NoFatherCb;
     private java.awt.TextField PiezaMaterial;
     private java.awt.TextField PiezaName;
     private java.awt.TextField PiezaTime;
+    private javax.swing.JFrame Tertabla;
     private java.awt.Button button1;
+    private java.awt.Button button2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTable jTable1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
