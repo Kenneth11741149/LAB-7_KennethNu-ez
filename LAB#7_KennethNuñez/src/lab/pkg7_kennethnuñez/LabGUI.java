@@ -408,7 +408,7 @@ public class LabGUI extends javax.swing.JFrame {
                     }
                 }
             }
-            System.out.println(timegeneration);
+            
             modelo.reload();
             
             
@@ -445,6 +445,7 @@ public class LabGUI extends javax.swing.JFrame {
             if(todo.get(i) instanceof Piezas){
                 if(((Piezas)todo.get(i)).getNombre().equals(seleccionation.getNombre())){
                     todo.remove(i);
+                    
                 }
             }
         }
