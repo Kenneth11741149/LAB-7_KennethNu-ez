@@ -419,7 +419,7 @@ public class LabGUI extends javax.swing.JFrame {
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
-        
+        JOptionPane.showMessageDialog(this, "El programa no tiene funcional el ensamblaje.");
     }//GEN-LAST:event_button2MouseClicked
 
     private void CarPiezasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CarPiezasMouseClicked
